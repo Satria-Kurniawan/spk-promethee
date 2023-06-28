@@ -16,5 +16,8 @@
         <li class="{{ Route::is('nilai-flow') ? 'text-green-500' : '' }} cursor-pointer">
             <a href="{{ route('nilai-flow') }}">Nilai Flow</a>
         </li>
+        <li class="{{ Route::is('perankingan') ? 'text-green-500' : '' }} cursor-pointer">
+            <a href="{{ route('perankingan') }}">Perankingan</a>
+        </li>
     </ul>
 </aside>

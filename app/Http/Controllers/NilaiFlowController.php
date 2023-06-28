@@ -12,7 +12,7 @@ class NilaiFlowController extends Controller
         $arrayAtlet = $dataAtlet->toArray();
 
         $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAtlet);
-        $nilaiPeferensiMultiKriteria = PreferensiMultiKriteriaController::hitungNilaiPreferensiMultikriteria($nilaiPreferensiKriteria);
+        $nilaiPreferensiMultikriteria = PreferensiMultiKriteriaController::hitungNilaiPreferensiMultikriteria($nilaiPreferensiKriteria);
 
         $jumlahKriteria = 0;
 
@@ -22,12 +22,17 @@ class NilaiFlowController extends Controller
             }
         }
 
-        $leavingFlow = $this->hitungLeavingFlow($nilaiPeferensiMultiKriteria, $jumlahKriteria);
-        $enteringFlow = $this->hitungEnteringFlow($nilaiPeferensiMultiKriteria, $jumlahKriteria);
+        $leavingFlow = $this->hitungLeavingFlow($nilaiPreferensiMultikriteria, $jumlahKriteria);
+        $enteringFlow = $this->hitungEnteringFlow($nilaiPreferensiMultikriteria, $jumlahKriteria);
+        $netFlow = $this->hitungNetflow($leavingFlow, $enteringFlow);
 
-        dd($leavingFlow, $enteringFlow);
 
-        return view('nilai-flow');
+        return view('nilai-flow', [
+            'nilaiPreferensiMultikriteria' => $nilaiPreferensiMultikriteria,
+            'leavingFlow' => $leavingFlow,
+            'enteringFlow' => $enteringFlow,
+            'netFlow' => $netFlow
+        ]);
     }
 
     public static function hitungLeavingFlow($nilaiPeferensiMultiKriteria, $jumlahKriteria){
@@ -62,5 +67,13 @@ class NilaiFlowController extends Controller
         }
 
         return $hasilEnteringFlow;
+    }
+
+    public static function hitungNetflow($leavingFlow, $enteringFlow){
+        for ($i=0; $i < count($leavingFlow) ; $i++) {
+            $netFlow[$i] = $leavingFlow[$i] - $enteringFlow[$i];
+        }
+
+        return $netFlow;
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\NilaiFlowController;
 use App\Http\Controllers\NilaiPreferensiController;
+use App\Http\Controllers\PerankinganController;
 use App\Http\Controllers\PreferensiMultiKriteriaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/nilai-preferensi-kriteria', [NilaiPreferensiController::class, 'nilaiPreferensiKriteria'])->name('nilai-preferensi-kriteria');
     Route::get('/nilai-preferensi-multikriteria', [PreferensiMultiKriteriaController::class, 'nilaiPreferensiMultiKriteria'])->name('nilai-preferensi-multikriteria');
     Route::get('/nilai-flow', [NilaiFlowController::class, 'nilaiFlow'])->name('nilai-flow');
+    Route::get('/perankingan', [PerankinganController::class, 'perankingan'])->name('perankingan');
 });
 
 require __DIR__.'/auth.php';

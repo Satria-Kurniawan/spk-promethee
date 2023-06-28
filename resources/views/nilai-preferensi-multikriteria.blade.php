@@ -6,7 +6,7 @@
     </x-slot>
 
     <main class="px-5 bg-white min-h-screen">
-        <table>
+        <x-table :title="'Index Preferensi Multikriteria'" :titleColspan="4">
             <thead>
                 <tr>
                     <th></th>
@@ -20,38 +20,13 @@
                     <tr>
                         <th class="px-6 py-4 border">{{ chr(65 + $loop->index) }}</th>
                         @foreach ($row as $value)
-                            <td class="px-6 py-4 whitespace-nowrap border">{{ $value }}</td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-center border {{ is_null($value) ? 'bg-black/30' : 'bg-transparent' }}">
+                                {{ $value }}</td>
                         @endforeach
                     </tr>
                 @endforeach
             </tbody>
-        </table>
-
-        {{-- <table class="border w-full">
-            <thead>
-                <tr>
-                    <th></th>
-                    @foreach ($nilaiPreferensiMultikriteria as $key => $values)
-                        <th class="px-6 py-4 border">{{ $key }}</th>
-                    @endforeach
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($nilaiPreferensiMultikriteria as $rowKey => $rowValues)
-                    <tr>
-                        <th class="border">{{ $rowKey }}</th>
-                        @foreach ($nilaiPreferensiMultikriteria as $columnKey => $columnValues)
-                            @if (isset($rowValues["$rowKey,$columnKey"]))
-                                <td class="border px-6 py-4 whitespace-nowrap text-center">
-                                    {{ $rowValues["$rowKey,$columnKey"] }}
-                                </td>
-                            @else
-                                <td class="px-6 py-4 bg-black/20"></td>
-                            @endif
-                        @endforeach
-                    </tr>
-                @endforeach
-            </tbody>
-        </table> --}}
+        </x-table>
     </main>
 </x-app-layout>

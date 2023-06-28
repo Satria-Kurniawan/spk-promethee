@@ -11,16 +11,16 @@
                 Tambah Data
             </x-button>
         </div>
-        <x-table :headers="['Nama', 'Umur', 'Otot Kaki', 'Otot Lengan', 'Teknik', 'Prestasi', 'Opsi']">
+        <x-table :title="'Data Atlet'" :headers="['Nama', 'Umur', 'Otot Kaki', 'Otot Lengan', 'Teknik', 'Prestasi', 'Opsi']" :titleColspan="7">
             @foreach ($dataAtlet as $atlet)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $atlet->nama }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $atlet->umur }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $atlet->otot_kaki }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $atlet->otot_lengan }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $atlet->teknik }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $atlet->prestasi }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-xl">
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->nama }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->umur }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->otot_kaki }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->otot_lengan }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->teknik }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->prestasi }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border text-xl">
                         <i class="fa-solid fa-pen-to-square text-blue-500 cursor-pointer hover:brightness-90 duration-300"
                             x-data="{ atlet: {{ $atlet }} }"
                             x-on:click="$dispatch('open-modal', {action: 'update-atlet', atlet: atlet})"></i>
