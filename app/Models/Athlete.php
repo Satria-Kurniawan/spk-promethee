@@ -11,10 +11,10 @@ class Athlete extends Model
 
     protected $fillable = [
         'nama',
-        "umur",
-        'otot_kaki',
-        'otot_lengan',
-        'teknik',
-        'prestasi'
+        'data'
+    ];
+
+    protected $casts = [
+        'data' => 'json'
     ];
 }
