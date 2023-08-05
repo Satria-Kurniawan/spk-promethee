@@ -6,7 +6,7 @@
     </x-slot>
 
     <main class="p-5 bg-white min-h-screen">
-        <x-table :title="'Data Atlet Awal'" titleColspan="7" class="mb-10">
+        <x-table :title="'Data Alternatif Awal'" titleColspan="7" class="mb-10">
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap text-center border"></td>
                 <td class="px-6 py-4 whitespace-nowrap text-center border font-bold"></td>
@@ -17,23 +17,23 @@
             @php
                 $counter = 65; // Kode ASCII untuk huruf 'A'
             @endphp
-            @foreach ($dataAtlet as $atlet)
-                {{-- {{ dd($atlet) }} --}}
+            @foreach ($dataAlternatif as $alternatif)
+                {{-- {{ dd($alternatif) }} --}}
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->nama }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->nama }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-center border font-bold">{{ chr($counter++) }}</td>
-                    @foreach ($atlet['data'] as $key => $value)
+                    @foreach ($alternatif['data'] as $key => $value)
                         <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $value }}</td>
                     @endforeach
                 </tr>
                 {{-- <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->nama }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->nama }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-center border font-bold">{{ chr($counter++) }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->umur }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->otot_kaki }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->otot_lengan }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->teknik }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $atlet->prestasi }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->umur }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->otot_kaki }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->otot_lengan }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->teknik }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->prestasi }}</td>
                 </tr> --}}
             @endforeach
         </x-table>

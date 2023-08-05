@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Athlete;
+use App\Models\Alternatif;
 use Illuminate\Http\Request;
 
 class PreferensiMultiKriteriaController extends Controller
 {
     public function nilaiPreferensiMultiKriteria(){
-        $dataAtlet = Athlete::all();
+        $dataAlternatif = Alternatif::all();
 
-        $arrayAtlet = $dataAtlet->toArray();
+        $arrayAlternatif = $dataAlternatif->toArray();
 
-        $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAtlet);
+        $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAlternatif);
 
         $nilaiPreferensiMultikriteria = $this->hitungNilaiPreferensiMultikriteria($nilaiPreferensiKriteria);
 

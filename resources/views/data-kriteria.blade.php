@@ -11,7 +11,7 @@
                 Tambah Data
             </x-button>
         </div>
-        <x-table :title="'Data Atlet'" :headers="['No', 'Nama Kriteria', 'Opsi']" :titleColspan="3">
+        <x-table :title="'Data Kriteria'" :headers="['No', 'Nama Kriteria', 'Opsi']" :titleColspan="3">
             @foreach ($dataKriteria as $kriteria)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $loop->iteration }}</td>

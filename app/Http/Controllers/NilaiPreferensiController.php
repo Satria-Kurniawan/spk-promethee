@@ -2,43 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Athlete;
+use App\Models\Alternatif;
 use App\Models\Criteria;
 use Illuminate\Http\Request;
 
 class NilaiPreferensiController extends Controller
 {
     public function nilaiPreferensiKriteria(){
-        $dataAtlet = Athlete::all();
+        $dataAlternatif = Alternatif::all();
         $dataKriteria = Criteria::all();
 
-        $arrayAtlet = $dataAtlet->toArray();
+        $arrayAlternatif = $dataAlternatif->toArray();
 
-        $nilaiPreferensiKriteria = $this->hitungNilaiPreferensiKriteria($arrayAtlet);
+        $nilaiPreferensiKriteria = $this->hitungNilaiPreferensiKriteria($arrayAlternatif);
 
         return view('nilai-preferensi-kriteria', [
-            'dataAtlet' => $dataAtlet,
+            'dataAlternatif' => $dataAlternatif,
             'nilaiPreferensiKriteria'=>$nilaiPreferensiKriteria,
             'dataKriteria' => $dataKriteria
         ]);
     }
 
-    public static function hitungNilaiPreferensiKriteria($arrayAtlet){
+    public static function hitungNilaiPreferensiKriteria($arrayAlternatif){
         $differences = [];
         $alphabet = range('A', 'Z');
 
         $nilaiPreferensiKriteria = [];
 
-        $kriteria = array_keys($arrayAtlet[0]['data']);
+        $kriteria = array_keys($arrayAlternatif[0]['data']);
 
-        foreach ($arrayAtlet as $indexA => $atletA) {
-            foreach ($arrayAtlet as $indexB => $atletB) {
+        foreach ($arrayAlternatif as $indexA => $alternatifA) {
+            foreach ($arrayAlternatif as $indexB => $alternatifB) {
                 if ($indexA !== $indexB) {
 
                     $differences[$indexA][$indexB] = [];
 
                     foreach ($kriteria as $kriteriaKey) {
-                        $difference = $atletA['data'][$kriteriaKey] - $atletB['data'][$kriteriaKey];
+                        $difference = $alternatifA['data'][$kriteriaKey] - $alternatifB['data'][$kriteriaKey];
                         $differences[$indexA][$indexB][$kriteriaKey] = $difference;
                     }
 
@@ -65,14 +65,14 @@ class NilaiPreferensiController extends Controller
 
         // dd($nilaiPreferensiKriteria);
 
-        // foreach ($arrayAtlet as $indexA => $atletA) {
-        //     foreach ($arrayAtlet as $indexB => $atletB) {
+        // foreach ($arrayAlternatif as $indexA => $alternatifA) {
+        //     foreach ($arrayAlternatif as $indexB => $alternatifB) {
         //         if ($indexA !== $indexB) {
-        //             $umurDifference = $atletA['umur'] - $atletB['umur'];
-        //             $ototKakiDifference = $atletA['otot_kaki'] - $atletB['otot_kaki'];
-        //             $ototLenganDifference = $atletA['otot_lengan'] - $atletB['otot_lengan'];
-        //             $teknikDifference = $atletA['teknik'] - $atletB['teknik'];
-        //             $prestasiDifference = $atletA['prestasi'] - $atletB['prestasi'];
+        //             $umurDifference = $alternatifA['umur'] - $alternatifB['umur'];
+        //             $ototKakiDifference = $alternatifA['otot_kaki'] - $alternatifB['otot_kaki'];
+        //             $ototLenganDifference = $alternatifA['otot_lengan'] - $alternatifB['otot_lengan'];
+        //             $teknikDifference = $alternatifA['teknik'] - $alternatifB['teknik'];
+        //             $prestasiDifference = $alternatifA['prestasi'] - $alternatifB['prestasi'];
 
         //             $key = $alphabet[$indexA] . ' - ' . $alphabet[$indexB];
 

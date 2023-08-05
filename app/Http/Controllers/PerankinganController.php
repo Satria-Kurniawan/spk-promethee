@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Athlete;
+use App\Models\Alternatif;
 use Illuminate\Http\Request;
 
 class PerankinganController extends Controller
 {
     public function perankingan(){
-        $dataAtlet = Athlete::all();
-        $arrayAtlet = $dataAtlet->toArray();
+        $dataAlternatif = Alternatif::all();
+        $arrayAlternatif = $dataAlternatif->toArray();
 
-        $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAtlet);
+        $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAlternatif);
         $nilaiPreferensiMultikriteria = PreferensiMultiKriteriaController::hitungNilaiPreferensiMultikriteria($nilaiPreferensiKriteria);
 
         $jumlahKriteria = 0;
@@ -26,9 +26,9 @@ class PerankinganController extends Controller
         $enteringFlow = NilaiFlowController::hitungEnteringFlow($nilaiPreferensiMultikriteria, $jumlahKriteria);
         $netFlow = NilaiFlowController::hitungNetflow($leavingFlow, $enteringFlow);
 
-        for ($i = 0; $i < count($dataAtlet); $i++) {
+        for ($i = 0; $i < count($dataAlternatif); $i++) {
             $result[$i] = [
-                'nama' => $arrayAtlet[$i]['nama'],
+                'nama' => $arrayAlternatif[$i]['nama'],
                 'leavingFlow' => $leavingFlow[$i],
                 'enteringFlow' => $enteringFlow[$i],
                 'netFlow' => $netFlow[$i]

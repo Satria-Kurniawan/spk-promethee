@@ -10,20 +10,23 @@
         <li class="{{ Route::is('data-subkriteria') ? 'text-green-500' : '' }} cursor-pointer">
             <a href="{{ route('data-subkriteria') }}">Data Subkriteria</a>
         </li>
-        <li class="{{ Route::is('data-atlet') ? 'text-green-500' : '' }} cursor-pointer">
-            <a href="{{ route('data-atlet') }}">Data Atlet</a>
+        <li class="{{ Route::is('data-alternatif') ? 'text-green-500' : '' }} cursor-pointer">
+            <a href="{{ route('data-alternatif') }}">Data Alternatif</a>
         </li>
         <li class="{{ Route::is('nilai-preferensi-kriteria') ? 'text-green-500' : '' }} cursor-pointer">
-            <a href="{{ route('nilai-preferensi-kriteria') }}">Nilai Preferensi Kriteria</a>
+            <a href="{{ route('nilai-preferensi-kriteria') }}">Preferensi Kriteria</a>
         </li>
         <li class="{{ Route::is('nilai-preferensi-multikriteria') ? 'text-green-500' : '' }} cursor-pointer">
-            <a href="{{ route('nilai-preferensi-multikriteria') }}">Index Preferensi Multikriteria</a>
+            <a href="{{ route('nilai-preferensi-multikriteria') }}">Preferensi Multikriteria</a>
         </li>
         <li class="{{ Route::is('nilai-flow') ? 'text-green-500' : '' }} cursor-pointer">
             <a href="{{ route('nilai-flow') }}">Nilai Flow</a>
         </li>
         <li class="{{ Route::is('perankingan') ? 'text-green-500' : '' }} cursor-pointer">
-            <a href="{{ route('perankingan') }}">Perankingan</a>
+            <a href="{{ route('perankingan') }}">Perhitungan</a>
         </li>
+        {{-- <li class="{{ Route::is('atlet.input') ? 'text-green-500' : '' }} cursor-pointer">
+            <a href="{{ route('atlet.input') }}">Input Atlet</a>
+        </li> --}}
     </ul>
 </aside>

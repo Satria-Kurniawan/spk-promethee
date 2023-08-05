@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\NilaiFlowController;
@@ -44,15 +45,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/data-subkriteria/update/{id}', [SubkriteriaController::class, 'perbaruiSubkriteria'])->name('subkriteria.update');
     Route::get('/data-subkriteria/delete/{id}', [SubkriteriaController::class, 'hapusSubkriteria'])->name('subkriteria.delete');
 
-    Route::get('/data-atlet', [AthleteController::class, 'getDataAtlet'])->name('data-atlet');
-    Route::post('/data-atlet/tambah', [AthleteController::class, 'tambahAtlet'])->name('atlet.add');
-    Route::post('/data-atlet/update/{id}', [AthleteController::class, 'perbaruiAtlet'])->name('atlet.update');
-    Route::get('/data-atlet/delete/{id}', [AthleteController::class, 'hapusAtlet'])->name('atlet.delete');
+    Route::get('/data-alternatif', [AlternatifController::class, 'getDataAlternatif'])->name('data-alternatif');
+    Route::post('/data-alternatif/tambah', [AlternatifController::class, 'tambahAlternatif'])->name('alternatif.add');
+    Route::post('/data-alternatif/update/{id}', [AlternatifController::class, 'perbaruiAlternatif'])->name('alternatif.update');
+    Route::get('/data-alternatif/delete/{id}', [AlternatifController::class, 'hapusAlternatif'])->name('alternatif.delete');
 
     Route::get('/nilai-preferensi-kriteria', [NilaiPreferensiController::class, 'nilaiPreferensiKriteria'])->name('nilai-preferensi-kriteria');
     Route::get('/nilai-preferensi-multikriteria', [PreferensiMultiKriteriaController::class, 'nilaiPreferensiMultiKriteria'])->name('nilai-preferensi-multikriteria');
     Route::get('/nilai-flow', [NilaiFlowController::class, 'nilaiFlow'])->name('nilai-flow');
     Route::get('/perankingan', [PerankinganController::class, 'perankingan'])->name('perankingan');
+
+    Route::get('/data-atlet/input', [AthleteController::class, 'inputAtlet'])->name('atlet.input');
+    Route::post('/data-atlet/tambah', [AthleteController::class, 'tambahAtlet'])->name('atlet.add');
 });
 
 require __DIR__.'/auth.php';

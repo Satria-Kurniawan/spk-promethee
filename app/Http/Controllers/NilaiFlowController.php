@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Athlete;
+use App\Models\Alternatif;
 use Illuminate\Http\Request;
 
 class NilaiFlowController extends Controller
 {
     public function nilaiFlow(){
-        $dataAtlet = Athlete::all();
-        $arrayAtlet = $dataAtlet->toArray();
+        $dataAlternatif = Alternatif::all();
+        $arrayAlternatif = $dataAlternatif->toArray();
 
-        $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAtlet);
+        $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAlternatif);
         $nilaiPreferensiMultikriteria = PreferensiMultiKriteriaController::hitungNilaiPreferensiMultikriteria($nilaiPreferensiKriteria);
 
         $jumlahKriteria = 0;
