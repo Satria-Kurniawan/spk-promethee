@@ -25,10 +25,9 @@
                                 <i class="fa-solid fa-pen-to-square text-blue-500 cursor-pointer hover:brightness-90 duration-300"
                                     x-data="{ subkriteria: {{ $subkriteria }}, idKriteria: {{ $kriteria->id }} }"
                                     x-on:click="$dispatch('open-modal', {action: 'update-subkriteria', subkriteria: subkriteria, idKriteria: idKriteria})"></i>
-                                <i class="fa-solid
-                            fa-eraser text-red-500 cursor-pointer hover:brightness-90 duration-300"
+                                <i class="fa-solid fa-eraser text-red-500 cursor-pointer hover:brightness-90 duration-300"
                                     x-data="{ subkriteria: {{ $subkriteria }} }"
-                                    x-on:click="window.location.href=`/data-subkriteria/delete/${subkriteria.id}`"></i>
+                                    x-on:click="if (confirm('Apakah Anda yakin ingin menghapus data ini?')) { window.location.href='/data-subkriteria/delete/' + subkriteria.id }"></i>
                             </td>
                         </tr>
                     @endforeach
@@ -56,7 +55,7 @@
                             autocomplete="bobot" />
                         <x-input-error :messages="$errors->get('bobot')" class="mt-2" />
                     </section>
-                    <x-text-input id="id_kriteria" class="block mt-1 w-full" type="hidden" name="id_kriteria"
+                    <x-text-input id="id_kriteria" class="block mt-1 w-full invisible" type="hidden" name="id_kriteria"
                         x-model="kriteria.id" />
                 </div>
                 <x-button type="submit" class="mt-5" x-on:click="show = false">
@@ -87,7 +86,7 @@
                             autocomplete="bobot" x-model="subkriteria.bobot" />
                         <x-input-error :messages="$errors->get('bobot')" class="mt-2" />
                     </section>
-                    <x-text-input id="id_kriteria" class="block mt-1 w-full" type="number" name="id_kriteria"
+                    <x-text-input id="id_kriteria" class="mt-1 w-full hidden" type="number" name="id_kriteria"
                         x-model="idKriteria" />
                 </div>
                 <x-button type="submit" class="mt-5" x-on:click="show = false">
