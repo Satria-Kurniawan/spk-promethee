@@ -20,10 +20,9 @@
                         <i class="fa-solid fa-pen-to-square text-blue-500 cursor-pointer hover:brightness-90 duration-300"
                             x-data="{ kriteria: {{ $kriteria }} }"
                             x-on:click="$dispatch('open-modal', {action: 'update-kriteria', kriteria: kriteria})"></i>
-                        <i class="fa-solid
-                            fa-eraser text-red-500 cursor-pointer hover:brightness-90 duration-300"
+                        <i class="fa-solid fa-eraser text-red-500 cursor-pointer hover:brightness-90 duration-300"
                             x-data="{ kriteria: {{ $kriteria }} }"
-                            x-on:click="window.location.href=`/data-kriteria/delete/${kriteria.id}`"></i>
+                            x-on:click="if (confirm('Apakah Anda yakin ingin menghapus data ini?')) { window.location.href='/data-kriteria/delete/' + kriteria.id }"></i>
                     </td>
                 </tr>
             @endforeach

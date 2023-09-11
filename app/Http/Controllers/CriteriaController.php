@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class CriteriaController extends Controller
 {
-    public function getDataKriteria(){
+    public function getDataKriteria()
+    {
         $dataKriteria = Criteria::all();
 
         return view('data-kriteria', [
@@ -15,17 +16,20 @@ class CriteriaController extends Controller
         ]);
     }
 
-    public function tambahKriteria(Request $req){
+    public function tambahKriteria(Request $req)
+    {
         $validatedData = $req->validate([
             'nama' => 'required|string'
         ]);
 
         Criteria::create($validatedData);
 
+        notify()->success('Berhasil menambahkan data kriteria ⚡️');
         return redirect()->back();
     }
 
-    public function perbaruiKriteria(Request $req, $id){
+    public function perbaruiKriteria(Request $req, $id)
+    {
         $kriteria = Criteria::findOrFail($id);
 
         $validatedData = $req->validate([
@@ -34,14 +38,17 @@ class CriteriaController extends Controller
 
         $kriteria->update($validatedData);
 
+        notify()->success('Berhasil memperbarui data kriteria ⚡️');
         return redirect()->back();
     }
 
-    public function hapusKriteria($id){
+    public function hapusKriteria($id)
+    {
         $kriteria = Criteria::findOrFail($id);
 
         $kriteria->delete();
 
+        notify()->success('Berhasil menghapus data kriteria ⚡️');
         return redirect()->back();
     }
 }

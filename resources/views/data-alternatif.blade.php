@@ -47,10 +47,9 @@
                             <i class="fa-solid fa-pen-to-square text-blue-500 cursor-pointer hover:brightness-90 duration-300"
                                 x-data="{ alternatif: {{ $alternatif }} }"
                                 x-on:click="$dispatch('open-modal', {action: 'update-alternatif', alternatif: alternatif})"></i>
-                            <i class="fa-solid
-                            fa-eraser text-red-500 cursor-pointer hover:brightness-90 duration-300"
+                            <i class="fa-solid fa-eraser text-red-500 cursor-pointer hover:brightness-90 duration-300"
                                 x-data="{ alternatif: {{ $alternatif }} }"
-                                x-on:click="window.location.href=`/data-alternatif/delete/${alternatif.id}`"></i>
+                                x-on:click="if (confirm('Apakah Anda yakin ingin menghapus data alternatif ini?')) { window.location.href='/data-alternatif/delete/' + alternatif.id }"></i>
                         </td>
                     </tr>
                 @endforeach
