@@ -46,17 +46,22 @@ class AlternatifController extends Controller
 
     public function perbaruiAlternatif(Request $req, $id)
     {
-        $validatedData = $req->validate([
-            'nama' => 'required',
-            "umur" => 'required',
-            'otot_kaki' => 'required',
-            'otot_lengan' => 'required',
-            'teknik' => 'required',
-            'prestasi' => 'required'
-        ]);
+        $data = $req->all();
+
+        unset($data['_token']);
+        unset($data['nama']);
 
         $alternatif = Alternatif::findOrFail($id);
-        $alternatif->update($validatedData);
+
+        $validatedData = $req->validate([
+            'nama' => 'required',
+        ]);
+
+        $alternatif->update([
+            'nama' => $validatedData['nama'],
+            'data' => $data
+        ]);
+
 
         notify()->success('Berhasil memperbarui data alternatif ⚡️');
         return redirect()->route('data-alternatif');
