@@ -15,18 +15,18 @@
                     <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif['netFlow'] }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $loop->index + 1 }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-center border">
-                        @if ($index < $loop->count / 3)
+                        @if ($index < $loop->count / 2)
                             <span class="py-1 px-2 text-sm font-semibold text-white rounded-md bg-black">
                                 Atlet Utama
                             </span>
-                        @elseif ($index < (2 * $loop->count) / 3)
+                        @elseif ($index < (2 * $loop->count) / 2)
                             <span class="py-1 px-2 text-sm font-semibold text-white rounded-md bg-green-500">
                                 Atlet Binaan
                             </span>
-                        @else
+                            {{-- @else
                             <span class="py-1 px-2 text-sm font-semibold text-white rounded-md bg-blue-500">
                                 Atlet Pemula
-                            </span>
+                            </span> --}}
                         @endif
                     </td>
                 </tr>
