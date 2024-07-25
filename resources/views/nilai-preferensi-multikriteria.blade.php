@@ -11,14 +11,14 @@
                 <tr>
                     <th></th>
                     @foreach ($nilaiPreferensiMultikriteria as $row)
-                        <th class="px-6 py-4 border">{{ chr(65 + $loop->index) }}</th>
+                        <th class="px-6 py-4 border">A{{ $loop->index + 1 }}</th>
                     @endforeach
                 </tr>
             </thead>
             <tbody>
                 @foreach ($nilaiPreferensiMultikriteria as $row)
                     <tr>
-                        <th class="px-6 py-4 border">{{ chr(65 + $loop->index) }}</th>
+                        <th class="px-6 py-4 border">A{{ $loop->index + 1 }}</th>
                         @foreach ($row as $value)
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-center border {{ is_null($value) ? 'bg-black/30' : 'bg-transparent' }}">
