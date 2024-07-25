@@ -1,4 +1,4 @@
-<aside class="w-80 bg-black/80 h-screen sticky top-0 p-5 text-white">
+<aside class="w-64 bg-black/80 h-screen sticky top-0 p-5 text-white">
     <a href="{{ url('/') }}" class="hover:text-green-500 duration-300">
         <h1 class="font-bold text-2xl">PROMETHEE</h1>
     </a>

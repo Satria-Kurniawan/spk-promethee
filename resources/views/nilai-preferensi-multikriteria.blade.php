@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <main class="px-5 bg-white min-h-screen">
+    <main class="px-5 bg-white min-h-screen flex 1 overflow-auto">
         <x-table :title="'Index Preferensi Multikriteria'" :titleColspan="4">
             <thead>
                 <tr>

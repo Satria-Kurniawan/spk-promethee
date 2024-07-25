@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <main class="px-5 bg-white min-h-screen">
+    <main class="px-5 bg-white min-h-screen overflow-auto">
         <x-table :title="'Index Preferensi Multi Kriteria'" :titleColspan="4">
             <tr>
                 <th class="border"></th>
@@ -29,7 +29,7 @@
             <x-table :title="'Leaving Flow'" :titleColspan="2">
                 @foreach ($leavingFlow as $index => $lfValue)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-center border">{{ chr(65 + $loop->index) }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center border">A{{ $loop->index + 1 }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $lfValue }}</td>
                     </tr>
                 @endforeach
@@ -38,7 +38,7 @@
             <x-table :title="'Entering Flow'" :titleColspan="2">
                 @foreach ($enteringFlow as $index => $efValue)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-center border">{{ chr(65 + $loop->index) }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center border">A{{ $loop->index + 1 }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $efValue }}</td>
                     </tr>
                 @endforeach
@@ -47,7 +47,7 @@
             <x-table :title="'Net Flow'" :titleColspan="2">
                 @foreach ($netFlow as $index => $nfValue)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-center border">{{ chr(65 + $loop->index) }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center border">A{{ $loop->index + 1 }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $nfValue }}</td>
                     </tr>
                 @endforeach

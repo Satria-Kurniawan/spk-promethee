@@ -7,23 +7,26 @@ use Illuminate\Http\Request;
 
 class NilaiFlowController extends Controller
 {
-    public function nilaiFlow(){
+    public function nilaiFlow()
+    {
         $dataAlternatif = Alternatif::all();
         $arrayAlternatif = $dataAlternatif->toArray();
 
         $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAlternatif);
         $nilaiPreferensiMultikriteria = PreferensiMultiKriteriaController::hitungNilaiPreferensiMultikriteria($nilaiPreferensiKriteria);
 
-        $jumlahKriteria = 0;
+        // $jumlahKriteria = 0;
 
-        foreach ($nilaiPreferensiKriteria as $prefix => $group) {
-            foreach ($group as $key => $values) {
-                $jumlahKriteria = count($values);
-            }
-        }
+        // foreach ($nilaiPreferensiKriteria as $prefix => $group) {
+        //     foreach ($group as $key => $values) {
+        //         $jumlahKriteria = count($values);
+        //     }
+        // }
 
-        $leavingFlow = $this->hitungLeavingFlow($nilaiPreferensiMultikriteria, $jumlahKriteria);
-        $enteringFlow = $this->hitungEnteringFlow($nilaiPreferensiMultikriteria, $jumlahKriteria);
+        $jumlahAlternatif = count(Alternatif::all());
+
+        $leavingFlow = $this->hitungLeavingFlow($nilaiPreferensiMultikriteria, $jumlahAlternatif);
+        $enteringFlow = $this->hitungEnteringFlow($nilaiPreferensiMultikriteria, $jumlahAlternatif);
         $netFlow = $this->hitungNetflow($leavingFlow, $enteringFlow);
 
 
@@ -35,7 +38,8 @@ class NilaiFlowController extends Controller
         ]);
     }
 
-    public static function hitungLeavingFlow($nilaiPeferensiMultiKriteria, $jumlahKriteria){
+    public static function hitungLeavingFlow($nilaiPeferensiMultiKriteria, $jumlahAlternatif)
+    {
         $sums = [];
 
         for ($i = 0; $i < count($nilaiPeferensiMultiKriteria); $i++) {
@@ -46,13 +50,16 @@ class NilaiFlowController extends Controller
             }
             $sums[] = $rowSum;
 
-            $hasilLeavingFlow[$i] = 1/($jumlahKriteria - 1) * $sums[$i];
-        }
+            // dd(0.5 + 0.75 + 0.25 + 0.5 + 0.5 + 0.25 + 0.5 + 0.25 + 0 + 0.5 + 0.5 + 0.25 + 0.5 + 0.75 + 0.25 + 0.25);
 
+            $hasilLeavingFlow[$i] = 1 / ($jumlahAlternatif - 1) * $sums[$i];
+        }
+        // dd($jumlahAlternatif);
         return $hasilLeavingFlow;
     }
 
-    public static function hitungEnteringFlow($nilaiPeferensiMultiKriteria, $jumlahKriteria){
+    public static function hitungEnteringFlow($nilaiPeferensiMultiKriteria, $jumlahAlternatif)
+    {
         $sums = [];
 
         for ($i = 0; $i < count($nilaiPeferensiMultiKriteria); $i++) {
@@ -63,14 +70,15 @@ class NilaiFlowController extends Controller
             }
             $sums[] = $columnSum;
 
-            $hasilEnteringFlow[$i] = 1/($jumlahKriteria - 1) * $sums[$i];
+            $hasilEnteringFlow[$i] = 1 / ($jumlahAlternatif - 1) * $sums[$i];
         }
 
         return $hasilEnteringFlow;
     }
 
-    public static function hitungNetflow($leavingFlow, $enteringFlow){
-        for ($i=0; $i < count($leavingFlow) ; $i++) {
+    public static function hitungNetflow($leavingFlow, $enteringFlow)
+    {
+        for ($i = 0; $i < count($leavingFlow); $i++) {
             $netFlow[$i] = $leavingFlow[$i] - $enteringFlow[$i];
         }
 

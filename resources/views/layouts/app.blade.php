@@ -27,18 +27,18 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 flex">
         @include('components.sidebar')
-        <section class="w-full">
+        <section class="flex-1 overflow-auto">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white w-full p-5">
+                <header class="bg-white p-5 flex-1">
                     {{ $header }}
                 </header>
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="flex-1 overflow-auto">
                 {{ $slot }}
             </main>
             <x-notify::notify />

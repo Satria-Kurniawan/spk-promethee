@@ -15,28 +15,19 @@
                 @endforeach
             </tr>
             @php
-                $counter = 65; // Kode ASCII untuk huruf 'A'
+                $counter = 1; // Mulai dengan 1 untuk A1
             @endphp
             @foreach ($dataAlternatif as $alternatif)
-                {{-- {{ dd($alternatif) }} --}}
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->nama }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border font-bold">{{ chr($counter++) }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center border font-bold">{{ 'A' . $counter++ }}</td>
                     @foreach ($alternatif['data'] as $key => $value)
                         <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $value }}</td>
                     @endforeach
                 </tr>
-                {{-- <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->nama }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border font-bold">{{ chr($counter++) }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->umur }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->otot_kaki }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->otot_lengan }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->teknik }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center border">{{ $alternatif->prestasi }}</td>
-                </tr> --}}
             @endforeach
         </x-table>
+
 
         @foreach ($nilaiPreferensiKriteria as $prefix => $group)
             <x-table :title="$prefix" :titleColspan="11" class="mb-10">
