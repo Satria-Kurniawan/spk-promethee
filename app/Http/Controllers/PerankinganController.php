@@ -7,23 +7,26 @@ use Illuminate\Http\Request;
 
 class PerankinganController extends Controller
 {
-    public function perankingan(){
+    public function perankingan()
+    {
         $dataAlternatif = Alternatif::all();
         $arrayAlternatif = $dataAlternatif->toArray();
 
         $nilaiPreferensiKriteria = NilaiPreferensiController::hitungNilaiPreferensiKriteria($arrayAlternatif);
         $nilaiPreferensiMultikriteria = PreferensiMultiKriteriaController::hitungNilaiPreferensiMultikriteria($nilaiPreferensiKriteria);
 
-        $jumlahKriteria = 0;
+        // $jumlahKriteria = 0;
 
-        foreach ($nilaiPreferensiKriteria as $prefix => $group) {
-            foreach ($group as $key => $values) {
-                $jumlahKriteria = count($values);
-            }
-        }
+        // foreach ($nilaiPreferensiKriteria as $prefix => $group) {
+        //     foreach ($group as $key => $values) {
+        //         $jumlahKriteria = count($values);
+        //     }
+        // }
 
-        $leavingFlow = NilaiFlowController::hitungLeavingFlow($nilaiPreferensiMultikriteria, $jumlahKriteria);
-        $enteringFlow = NilaiFlowController::hitungEnteringFlow($nilaiPreferensiMultikriteria, $jumlahKriteria);
+        $jumlahAlternatif = count(Alternatif::all());
+
+        $leavingFlow = NilaiFlowController::hitungLeavingFlow($nilaiPreferensiMultikriteria, $jumlahAlternatif);
+        $enteringFlow = NilaiFlowController::hitungEnteringFlow($nilaiPreferensiMultikriteria, $jumlahAlternatif);
         $netFlow = NilaiFlowController::hitungNetflow($leavingFlow, $enteringFlow);
 
         for ($i = 0; $i < count($dataAlternatif); $i++) {
@@ -44,7 +47,8 @@ class PerankinganController extends Controller
         ]);
     }
 
-    public function welcome(){
+    public function welcome()
+    {
         $dataAlternatif = Alternatif::all();
         $arrayAlternatif = $dataAlternatif->toArray();
 
